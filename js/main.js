@@ -8,11 +8,8 @@ var friends = [ // email list of users
     'lucy@hotmail.com'
 ];
 
-var tooltip = friends.toString(); // print the array
-console.log(tooltip);
-
-document.getElementsByClassName('tooltiptext')[0].innerHTML = tooltip;
-
+document.getElementsByClassName('tooltiptext')[0].innerHTML =
+'<li>' + friends.join('</li><li>') + '</li>'; // print the array as list
 
 function checkEmail() {
     var email = document.getElementById('txtEmail');
@@ -23,9 +20,33 @@ function checkEmail() {
     return false;
     } else {
         if (friends.indexOf(email.value) !== -1) {
-                alert("Value exists!")
+                //alert("Welcome " + email.value + "!")
+                var user = email.value; 
+                document.getElementById('user').innerHTML = "Welcome " + user + "!";
             } else{
-                alert("Value does not exists!")
+                alert("I'm sorry, but my mother told me that: \"I can't speak to strangers!\"")
             }
 }
 }
+
+var dice = {
+  sides: 6,
+  roll: function () {
+    var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+    return randomNumber;
+  }
+}
+
+//Prints dice roll to the page
+
+function printNumber(number) {
+  var placeholder = document.getElementById('placeholder');
+  placeholder.innerHTML = number;
+}
+
+var button = document.getElementById('button');
+
+button.onclick = function() {
+  var result = dice.roll();
+  printNumber(result);
+};
